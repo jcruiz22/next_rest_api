@@ -57,7 +57,7 @@ export const PATCH = async (request: Request) => {
   }
 };
 
-export const DELETE = async (request: Request) => {
+export const DELETE = async (request: Request): Promise<NextResponse> => {
   try {
     const body = await request.json();
     const { userId } = body;
