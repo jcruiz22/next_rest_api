@@ -26,14 +26,14 @@ export const POST = async (request: Request) => {
     return new NextResponse("Error creating user", { status: 500 });
   }
 }
+
 export const PATCH = async (request: Request) => {
   try {
-    const body = await request.json();
-    const { userId, newUserName } = body;
+    const { userId, newUserName } = await request.json();
     await connect();
- 
+
     if (!userId || !newUserName) {
-      return new NextResponse("User not found", { status: 404 });
+      return new NextResponse("Missing userId", { status: 404 });
     }
 
     if (!Types.ObjectId.isValid(userId)) {
@@ -59,8 +59,7 @@ export const PATCH = async (request: Request) => {
 
 export const DELETE = async (request: Request): Promise<NextResponse> => {
   try {
-    const body = await request.json();
-    const { userId } = body;
+    const { userId } = await request.json();
     await connect();
 
     if (!userId) {
