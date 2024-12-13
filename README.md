@@ -1,8 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js REST API Project
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). It includes a REST API for managing users, categories, and blogs using MongoDB and Mongoose.
+
+Made only to shed some rust and practice
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -18,19 +34,33 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## API Endpoints
 
-## Learn More
+### Users
 
-To learn more about Next.js, take a look at the following resources:
+- **GET** `/api/(auth)/users` - Fetch all users
+- **POST** `/api/(auth)/users` - Create a new user
+- **PATCH** `/api/(auth)/users` - Update a user
+- **DELETE** `/api/(auth)/users` - Delete a user
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Categories
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **GET** `/api/(dashboard)/categories` - Fetch all categories for a user
+- **POST** `/api/(dashboard)/categories` - Create a new category
+- **PATCH** `/api/(dashboard)/categories/[category]` - Update a category
+- **DELETE** `/api/(dashboard)/categories/[category]` - Delete a category
 
-## Deploy on Vercel
+### Blogs
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **GET** `/api/(dashboard)/blogs` - Fetch all blogs for a category
+- **POST** `/api/(dashboard)/blogs` - Create a new blog
+- **PATCH** `/api/(dashboard)/blogs/[blog]` - Update a blog
+- **DELETE** `/api/(dashboard)/blogs/[blog]` - Delete a blog
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Environment Variables
+
+Create a `.env` file in the root directory and add your MongoDB URI:
+
+```env
+MONGODB_URI=your_mongodb_uri
+```
